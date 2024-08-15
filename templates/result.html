@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .result-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .result-container:hover {
+            transform: translateY(-10px);
+        }
+
+        .result-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .result-text strong {
+            color: #007bff;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .back-btn:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Prediction Result</h1>
+        {% if prediction == 1 %}
+            <p class="result-text">The predicted result is: <strong>High Risk</strong></p>
+        {% else %}
+            <p class="result-text">The predicted result is: <strong>Low Risk</strong></p>
+        {% endif %}
+            <a href="/" class="back-btn">Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Heart Disease Prediction</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            color: black;
+        }
+        body {
+            background: url("https://cdn.pixabay.com/photo/2016/08/10/20/26/stethoscope-1584223_1280.jpg") no-repeat top center;
+            padding: 0 10px;
+            background-size: cover;
+        }
+        .wrapper {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            margin: 20px auto;
+            padding: 30px;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+        }
+        .wrapper .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fec107;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .wrapper .form {
+            width: 100%;
+        }
+        .wrapper .form .input_field {
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .wrapper .form .input_field label {
+            width: 100px;
+            font-weight: bold;
+            color: wheat;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        .wrapper .form .input_field input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .wrapper .form .input_field input:focus {
+            border-color: #007bff;
+            background-color: #e9f5ff;
+            outline: none;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .submit-btn:focus {
+            outline: none;
+        }
+        .wrapper .form .input_field input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .wrapper .form .input_field input[type="number"]::-webkit-outer-spin-button,
+        .wrapper .form .input_field input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <form action="{{ url_for('predict') }}" method="post">
+        <div class="wrapper">
+            <div class="title">
+                <h3 style="color: white;">Vital Monitoring using Arduino Nicla SenseMe based Smart Mask</h3>
+            </div>
+            <div class="form">
+                <div class="input_field">
+                    <label for="accx">AccX</label>
+                    <input type="number" id="accx" name="accx" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="accy">AccY</label>
+                    <input type="number" id="accy" name="accy" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="accz">AccZ</label>
+                    <input type="number" id="accz" name="accz" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="gyrox">GyroX</label>
+                    <input type="number" id="gyrox" name="gyrox" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="gyroy">GyroY</label>
+                    <input type="number" id="gyroy" name="gyroy" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="gyroz">GyroZ</label>
+                    <input type="number" id="gyroz" name="gyroz" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="temp">Temp</label>
+                    <input type="number" id="temp" name="temp" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="gas">Gas</label>
+                    <input type="number" id="gas" name="gas" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="rotx">RotX</label>
+                    <input type="number" id="rotx" name="rotx" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="roty">RotY</label>
+                    <input type="number" id="roty" name="roty" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="rotz">RotZ</label>
+                    <input type="number" id="rotz" name="rotz" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="rotw">RotW</label>
+                    <input type="number" id="rotw" name="rotw" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="rotacc">RotAcc</label>
+                    <input type="number" id="rotacc" name="rotacc" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="pressure">Pressure</label>
+                    <input type="number" id="pressure" name="pressure" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="heartrate">HeartRate</label>
+                    <input type="number" id="heartrate" name="heartrate" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <label for="aqi">AQI</label>
+                    <input type="number" id="aqi" name="aqi" step="0.0000001" required>
+                </div>
+                <div class="input_field">
+                    <input type="submit" class="submit-btn" id="submit" value="Submit">
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
